@@ -20,3 +20,5 @@ install:
 	xcrun simctl install booted $(BUNDLE_APP)
 run:
 	xcrun simctl launch booted "me.towry.TasskySidebar"
+
+.PHONY: boot build install run
