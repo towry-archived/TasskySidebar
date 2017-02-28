@@ -8,7 +8,7 @@
 
 import UIKit
 
-let kMenubarWidth = 80
+let kMenubarWidth: CGFloat = 80.0
 
 class MasterViewController: UIViewController {
 
@@ -38,7 +38,6 @@ class MasterViewController: UIViewController {
     func addConstraintsToScrollView() {
         let view = self.scrollView!
         self.view.addConstraints([
-
                 NSLayoutConstraint(item: view, attribute: .top, relatedBy: .equal, toItem: self.view, attribute: .top, multiplier: 1.0, constant: 0),
                 NSLayoutConstraint(item: view, attribute: .bottom, relatedBy: .equal, toItem: self.bottomLayoutGuide, attribute: .bottom, multiplier: 1.0, constant: 0),
                 NSLayoutConstraint(item: view, attribute: .leading, relatedBy: .equal, toItem: self.view, attribute: .leading, multiplier: 1.0, constant: 0),
@@ -52,29 +51,64 @@ class MasterViewController: UIViewController {
         // Add a view to manage the contents.
         self.contentView = UIView(frame: CGRect(x: 0, y:0, width: 600 + kMenubarWidth, height: 600))
         contentView?.frame = sv.bounds
+        contentView?.translatesAutoresizingMaskIntoConstraints = false
         sv.addSubview(self.contentView!)
         self.addConstraintsToContentView()
 
         // Add a menu container view
         let menuContainerView = UIView(frame: CGRect(x: 0, y: 0, width: kMenubarWidth, height: 600))
+        menuContainerView.translatesAutoresizingMaskIntoConstraints = false
+        menuContainerView.backgroundColor = .red
         // Add a detail container view
         let detailContainerView = UIView(frame: CGRect(x: kMenubarWidth, y: 0, width: 600, height: 600))
+        detailContainerView.translatesAutoresizingMaskIntoConstraints = false
+        detailContainerView.backgroundColor = .blue
+        contentView?.addSubview(menuContainerView)
+        contentView?.addSubview(detailContainerView)
+        
+        // - add constraints for menuContainerView and detailContainerView
+        contentView?.addConstraints([
+            NSLayoutConstraint(item: menuContainerView, attribute: .top, relatedBy: .equal, toItem: contentView!, attribute: .top, multiplier: 1.0, constant: 0),
+            NSLayoutConstraint(item: menuContainerView, attribute: .bottom, relatedBy: .equal, toItem: contentView!, attribute: .bottom, multiplier: 1.0, constant: 0),
+            NSLayoutConstraint(item: menuContainerView, attribute: .leading, relatedBy: .equal, toItem: contentView!, attribute: .leading, multiplier: 1.0, constant: 0),
+            NSLayoutConstraint(item: menuContainerView, attribute: .trailing, relatedBy: .equal, toItem: detailContainerView, attribute: .leading, multiplier: 1.0, constant: 0),
+            ])
+        menuContainerView.addConstraint(NSLayoutConstraint(item: menuContainerView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 0.0, constant: kMenubarWidth))
+        
+        contentView?.addConstraints([
+            NSLayoutConstraint(item: detailContainerView, attribute: .top, relatedBy: .equal, toItem: contentView!, attribute: .top, multiplier: 1.0, constant: 0),
+            NSLayoutConstraint(item: detailContainerView, attribute: .bottom, relatedBy: .equal, toItem: contentView!, attribute: .bottom, multiplier: 1.0, constant: 0),
+            NSLayoutConstraint(item: detailContainerView, attribute: .trailing, relatedBy: .equal, toItem: contentView!, attribute: .trailing, multiplier: 1.0, constant: 0)
+            ])
+        
+        // - end
 
-
-        let detailViewCtl = DetailViewController()
+        
         let menubarViewCtl = MenubarViewController()
+        let detailViewCtl = DetailViewController()
 
         let leftNav = UINavigationController(rootViewController: menubarViewCtl)
         let rightNav = UINavigationController(rootViewController: detailViewCtl)
 
+        leftNav.view.frame = menuContainerView.bounds
+        leftNav.view.translatesAutoresizingMaskIntoConstraints = false
+        leftNav.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
         self.addChildViewController(leftNav)
-        self.view.addSubview(leftNav.view)
+        menuContainerView.addSubview(leftNav.view)
         leftNav.didMove(toParentViewController: self)
+        
+        leftNav.view.frame = menuContainerView.bounds
+        leftNav.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+
 
         self.addChildViewController(rightNav)
-        self.view.addSubview(rightNav.view)
-        rightNav.didMove(toParentViewController: rightNav)
-
+        detailContainerView.addSubview(rightNav.view)
+        rightNav.didMove(toParentViewController: self)
+        
+        rightNav.view.frame = detailContainerView.bounds
+        rightNav.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
         leftNav.navigationBar.isTranslucent = false
         rightNav.navigationBar.isTranslucent = false
     }

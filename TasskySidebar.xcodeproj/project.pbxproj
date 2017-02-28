@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F402FB31A3AAC43D35AC7E1 /* libPods-TasskySidebar.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 740EEEBD680A27484366982A /* libPods-TasskySidebar.a */; };
 		696E85E114BA9F5B90872E4B /* MenubarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696E8630919E3E5E6F6226AD /* MenubarViewController.swift */; };
 		696E872201834E8926E8C340 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696E829FA994783B48556B5A /* DetailViewController.swift */; };
 		837DF9851E64788400BC021B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837DF9841E64788400BC021B /* AppDelegate.swift */; };
@@ -16,14 +17,17 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6489FC84E36E1EF56F9E0556 /* Pods-TasskySidebar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TasskySidebar.release.xcconfig"; path = "Pods/Target Support Files/Pods-TasskySidebar/Pods-TasskySidebar.release.xcconfig"; sourceTree = "<group>"; };
 		696E829FA994783B48556B5A /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		696E8630919E3E5E6F6226AD /* MenubarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenubarViewController.swift; sourceTree = "<group>"; };
+		740EEEBD680A27484366982A /* libPods-TasskySidebar.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TasskySidebar.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		837DF9811E64788400BC021B /* TasskySidebar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TasskySidebar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		837DF9841E64788400BC021B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		837DF9861E64788400BC021B /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
 		837DF98B1E64788400BC021B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		837DF98E1E64788400BC021B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		837DF9901E64788400BC021B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F4D270E8A1C53F4725CBAC3A /* Pods-TasskySidebar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TasskySidebar.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TasskySidebar/Pods-TasskySidebar.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +35,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F402FB31A3AAC43D35AC7E1 /* libPods-TasskySidebar.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		08CBAA83040F72A6ABFD2F56 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				740EEEBD680A27484366982A /* libPods-TasskySidebar.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		12B44C41EDD9999CF8DDD671 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F4D270E8A1C53F4725CBAC3A /* Pods-TasskySidebar.debug.xcconfig */,
+				6489FC84E36E1EF56F9E0556 /* Pods-TasskySidebar.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		837DF9781E64788400BC021B = {
 			isa = PBXGroup;
 			children = (
 				837DF9831E64788400BC021B /* TasskySidebar */,
 				837DF9821E64788400BC021B /* Products */,
+				12B44C41EDD9999CF8DDD671 /* Pods */,
+				08CBAA83040F72A6ABFD2F56 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -74,9 +98,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 837DF9931E64788400BC021B /* Build configuration list for PBXNativeTarget "TasskySidebar" */;
 			buildPhases = (
+				389BBAFB9E9965FA1B3ACF26 /* [CP] Check Pods Manifest.lock */,
 				837DF97D1E64788400BC021B /* Sources */,
 				837DF97E1E64788400BC021B /* Frameworks */,
 				837DF97F1E64788400BC021B /* Resources */,
+				CA8C005F71729A369A3C134F /* [CP] Embed Pods Frameworks */,
+				B31E15A8F8301213C08B8FBC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -133,6 +160,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		389BBAFB9E9965FA1B3ACF26 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		B31E15A8F8301213C08B8FBC /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TasskySidebar/Pods-TasskySidebar-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CA8C005F71729A369A3C134F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TasskySidebar/Pods-TasskySidebar-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		837DF97D1E64788400BC021B /* Sources */ = {
@@ -253,6 +328,7 @@
 		};
 		837DF9941E64788400BC021B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F4D270E8A1C53F4725CBAC3A /* Pods-TasskySidebar.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 5S95K97BRD;
@@ -266,6 +342,7 @@
 		};
 		837DF9951E64788400BC021B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6489FC84E36E1EF56F9E0556 /* Pods-TasskySidebar.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 5S95K97BRD;
