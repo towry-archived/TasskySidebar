@@ -7,4 +7,5 @@ import Foundation
 
 protocol SidebarAnimationDelegate: NSObjectProtocol {
     func showOrHide(_ show: Bool, animated: Bool)
+    func didSelect(_ item: MenuItemType)
 }

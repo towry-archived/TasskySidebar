@@ -17,7 +17,11 @@ class MasterViewController: UIViewController {
     var detailViewCtl: DetailViewController?
     var isMenuShow = false
     var menuContainerView: UIView?
-
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .blue
@@ -92,6 +96,7 @@ class MasterViewController: UIViewController {
 
         
         let menubarViewCtl = MenubarViewController()
+        menubarViewCtl.delegate = self
         let detailViewCtl = DetailViewController()
         self.detailViewCtl = detailViewCtl
         self.detailViewCtl?.delegate = self
@@ -184,7 +189,6 @@ extension  MasterViewController: UIScrollViewDelegate {
         
         // Begin layer 3d transform
         self.menuContainerView?.layer.transform = self.get3dTransform(fraction)
-        print(fraction)
         self.menuContainerView?.alpha = fraction
         
         if let detailViewCtl = self.detailViewCtl {
@@ -217,5 +221,10 @@ extension  MasterViewController: SidebarAnimationDelegate {
         
         self.scrollView?.setContentOffset(point, animated: animated)
         self.isMenuShow = show
+    }
+    
+    func didSelect(_ item: MenuItemType) {
+        self.showOrHide(false, animated: true)
+        self.detailViewCtl?.presentDetail(item)
     }
 }

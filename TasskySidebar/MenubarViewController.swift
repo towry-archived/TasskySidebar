@@ -5,14 +5,17 @@
 
 import UIKit
 
+typealias MenuItemType = Dictionary<String, Any>
+
 let kMenuItemCount = 7
 
 class MenubarViewController: UIViewController {
     
     var tableView: UITableView?
+    weak var delegate: SidebarAnimationDelegate?
     
-    lazy var menuItems: [Dictionary<String, Any>] = {
-        var dic = [Dictionary<String, Any>]()
+    lazy var menuItems: [MenuItemType] = {
+        var dic = [MenuItemType]()
         
         for i in 1...7 {
             dic.append(["text": "m\(i)", "color": UIColor.randomColor()])
@@ -23,8 +26,14 @@ class MenubarViewController: UIViewController {
     
     override func viewDidLoad() {
         self.navigationController?.navigationBar.barTintColor = .black
+        self.navigationController?.navigationBar.titleTextAttributes = [
+            NSForegroundColorAttributeName: UIColor.white
+        ]
+        self.navigationController?.view.clipsToBounds = true
         
         self.setupTable()
+        
+        self.delegate?.didSelect(self.menuItems[0])
     }
     
     func setupTable() {
@@ -46,7 +55,7 @@ class MenubarViewController: UIViewController {
 extension MenubarViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        self.delegate?.didSelect(self.menuItems[indexPath.row])
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
