@@ -5,6 +5,9 @@ XCODE_WORKSPACE="TasskySidebar.xcworkspace"
 SDK="iphonesimulator10.2"
 BUNDLE_APP="build/Build/Products/Debug-iphonesimulator/TasskySidebar.app"
 
+all:
+	echo "Please run a specific target"
+
 boot:
 	nohup /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app/Contents/MacOS/Simulator -CurrentDeviceUDID $(did) > /tmp/simulator.log 2>&1&
 

@@ -15,13 +15,14 @@ class MasterViewController: UIViewController {
     var scrollView: UIScrollView?
     var contentView: UIView?
     var detailViewCtl: DetailViewController?
+    var isMenuShow = false
+    var menuContainerView: UIView?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .blue
 
         self.scrollView = UIScrollView()
-        self.scrollView?.isPagingEnabled = (scrollView?.contentOffset.x)! < ((scrollView?.contentSize.width)! - (scrollView?.frame.width)!)
         self.scrollView?.bounces = false
         self.scrollView?.translatesAutoresizingMaskIntoConstraints = false
         if let scrollView = self.scrollView {
@@ -55,6 +56,7 @@ class MasterViewController: UIViewController {
 
         // Add a view to manage the contents.
         self.contentView = UIView(frame: CGRect(x: 0, y:0, width: 600 + kMenubarWidth, height: 600))
+        contentView?.backgroundColor = .black
         contentView?.frame = sv.bounds
         contentView?.translatesAutoresizingMaskIntoConstraints = false
         sv.addSubview(self.contentView!)
@@ -63,7 +65,6 @@ class MasterViewController: UIViewController {
         // Add a menu container view
         let menuContainerView = UIView(frame: CGRect(x: 0, y: 0, width: kMenubarWidth, height: 600))
         menuContainerView.translatesAutoresizingMaskIntoConstraints = false
-        menuContainerView.backgroundColor = .red
         // Add a detail container view
         let detailContainerView = UIView(frame: CGRect(x: kMenubarWidth, y: 0, width: 600, height: 600))
         detailContainerView.translatesAutoresizingMaskIntoConstraints = false
@@ -85,23 +86,26 @@ class MasterViewController: UIViewController {
             NSLayoutConstraint(item: detailContainerView, attribute: .bottom, relatedBy: .equal, toItem: contentView!, attribute: .bottom, multiplier: 1.0, constant: 0),
             NSLayoutConstraint(item: detailContainerView, attribute: .trailing, relatedBy: .equal, toItem: contentView!, attribute: .trailing, multiplier: 1.0, constant: 0)
             ])
-        
+
+        self.menuContainerView = menuContainerView
         // - end
 
         
         let menubarViewCtl = MenubarViewController()
         let detailViewCtl = DetailViewController()
         self.detailViewCtl = detailViewCtl
+        self.detailViewCtl?.delegate = self
 
         let leftNav = UINavigationController(rootViewController: menubarViewCtl)
         let rightNav = UINavigationController(rootViewController: detailViewCtl)
 
+        // - menu
         self.addChildViewController(leftNav)
         menuContainerView.addSubview(leftNav.view)
         leftNav.view.frame = menuContainerView.bounds
         leftNav.view.autoresizesSubviews = true
         leftNav.view.translatesAutoresizingMaskIntoConstraints = true
-        // constraint
+        // constraint for leftnav's root view
         menuContainerView.addConstraints([
             NSLayoutConstraint(item: leftNav.view, attribute: .top, relatedBy: .equal, toItem: menuContainerView, attribute: .top, multiplier: 1.0, constant: 0),
             NSLayoutConstraint(item: leftNav.view, attribute: .bottom, relatedBy: .equal, toItem: menuContainerView, attribute: .bottom, multiplier: 1.0, constant: 0),
@@ -109,14 +113,22 @@ class MasterViewController: UIViewController {
             NSLayoutConstraint(item: leftNav.view, attribute: .trailing, relatedBy: .equal, toItem: menuContainerView, attribute: .trailing, multiplier: 1.0, constant: 0),
         ])
         leftNav.didMove(toParentViewController: self)
+        // - end
 
+        // - detail
         self.addChildViewController(rightNav)
         detailContainerView.addSubview(rightNav.view)
         rightNav.view.frame = detailContainerView.bounds
         rightNav.view.translatesAutoresizingMaskIntoConstraints = true
-        // constraint
-
+        // constraint for right nav's root view
+        detailContainerView.addConstraints([
+            NSLayoutConstraint(item: rightNav.view, attribute: .top, relatedBy: .equal, toItem: detailContainerView, attribute: .top, multiplier: 1.0, constant: 0),
+            NSLayoutConstraint(item: rightNav.view, attribute: .bottom, relatedBy: .equal, toItem: detailContainerView, attribute: .bottom, multiplier: 1.0, constant: 0),
+            NSLayoutConstraint(item: rightNav.view, attribute: .leading, relatedBy: .equal, toItem: detailContainerView, attribute: .leading, multiplier: 1.0, constant: 0),
+            NSLayoutConstraint(item: rightNav.view, attribute: .trailing, relatedBy: .equal, toItem: detailContainerView, attribute: .trailing, multiplier: 1.0, constant: 0),
+        ])
         rightNav.didMove(toParentViewController: self)
+        // -end
 
         leftNav.navigationBar.isTranslucent = false
         rightNav.navigationBar.isTranslucent = false
@@ -154,9 +166,56 @@ class MasterViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.menuContainerView?.layer.anchorPoint = CGPoint(x: 1.0, y: 0.5)
+        self.showOrHide(self.isMenuShow, animated: false)
+    }
 }
 
 
 extension  MasterViewController: UIScrollViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let multiplier = 1.0 / (self.menuContainerView?.bounds.width)!
+        let offset = (self.scrollView?.contentOffset.x)! * multiplier
+        let fraction = 1.0 - offset
+        
+        // Begin layer 3d transform
+        self.menuContainerView?.layer.transform = self.get3dTransform(fraction)
+        print(fraction)
+        self.menuContainerView?.alpha = fraction
+        
+        if let detailViewCtl = self.detailViewCtl {
+            if let menuButton = detailViewCtl.menuButton {
+                menuButton.rotate(fraction)
+            }
+        }
+        
+        self.scrollView?.isPagingEnabled = scrollView.contentOffset.x < (scrollView.contentSize.width - scrollView.frame.width)
+        
+        let menuOffset = self.menuContainerView?.bounds.width
+        self.isMenuShow = !CGPoint(x: menuOffset!, y: 0).equalTo((self.scrollView?.contentOffset)!)
+    }
+    
+    func get3dTransform(_ fraction: CGFloat) -> CATransform3D {
+        var identity = CATransform3DIdentity
+        identity.m34 = -1.0 / 1000.0
+        let angle = CGFloat(1.0 - fraction) * -CGFloat(M_PI_2)
+        let xOffset = (self.menuContainerView?.bounds.width)! / 2
+        let rotateTransform = CATransform3DRotate(identity, angle, 0.0, 1.0, 0.0)
+        let translateTransform = CATransform3DMakeTranslation(xOffset, 0, 0)
+        return CATransform3DConcat(rotateTransform, translateTransform)
+    }
+}
 
+extension  MasterViewController: SidebarAnimationDelegate {
+    func showOrHide(_ show: Bool, animated: Bool) {
+        let xOffset = self.menuContainerView!.bounds.width
+        let point = show ? CGPoint.zero : CGPoint(x: xOffset, y: 0)
+        
+        self.scrollView?.setContentOffset(point, animated: animated)
+        self.isMenuShow = show
+    }
 }

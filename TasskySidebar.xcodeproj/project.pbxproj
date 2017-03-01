@@ -9,7 +9,9 @@
 /* Begin PBXBuildFile section */
 		4F402FB31A3AAC43D35AC7E1 /* libPods-TasskySidebar.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 740EEEBD680A27484366982A /* libPods-TasskySidebar.a */; };
 		696E85E114BA9F5B90872E4B /* MenubarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696E8630919E3E5E6F6226AD /* MenubarViewController.swift */; };
+		696E864619F75912AB8E36EB /* SidebarAnimationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696E86148ECFBE4100F4F4D4 /* SidebarAnimationDelegate.swift */; };
 		696E872201834E8926E8C340 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696E829FA994783B48556B5A /* DetailViewController.swift */; };
+		696E8ACC9077EF2AE42E6708 /* MenuButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696E8820BEF1D67C927C9E36 /* MenuButtonView.swift */; };
 		837DF9851E64788400BC021B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837DF9841E64788400BC021B /* AppDelegate.swift */; };
 		837DF9871E64788400BC021B /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837DF9861E64788400BC021B /* MasterViewController.swift */; };
 		837DF98C1E64788400BC021B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 837DF98B1E64788400BC021B /* Assets.xcassets */; };
@@ -20,7 +22,9 @@
 /* Begin PBXFileReference section */
 		6489FC84E36E1EF56F9E0556 /* Pods-TasskySidebar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TasskySidebar.release.xcconfig"; path = "Pods/Target Support Files/Pods-TasskySidebar/Pods-TasskySidebar.release.xcconfig"; sourceTree = "<group>"; };
 		696E829FA994783B48556B5A /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		696E86148ECFBE4100F4F4D4 /* SidebarAnimationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarAnimationDelegate.swift; sourceTree = "<group>"; };
 		696E8630919E3E5E6F6226AD /* MenubarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenubarViewController.swift; sourceTree = "<group>"; };
+		696E8820BEF1D67C927C9E36 /* MenuButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuButtonView.swift; sourceTree = "<group>"; };
 		740EEEBD680A27484366982A /* libPods-TasskySidebar.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TasskySidebar.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		837DF9811E64788400BC021B /* TasskySidebar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TasskySidebar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		837DF9841E64788400BC021B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -90,6 +94,8 @@
 				696E8630919E3E5E6F6226AD /* MenubarViewController.swift */,
 				696E829FA994783B48556B5A /* DetailViewController.swift */,
 				837DF9981E65DDEF00BC021B /* MenuItemTableViewCell.swift */,
+				696E8820BEF1D67C927C9E36 /* MenuButtonView.swift */,
+				696E86148ECFBE4100F4F4D4 /* SidebarAnimationDelegate.swift */,
 			);
 			path = TasskySidebar;
 			sourceTree = "<group>";
@@ -222,6 +228,8 @@
 				696E85E114BA9F5B90872E4B /* MenubarViewController.swift in Sources */,
 				696E872201834E8926E8C340 /* DetailViewController.swift in Sources */,
 				837DF9991E65DDEF00BC021B /* MenuItemTableViewCell.swift in Sources */,
+				696E8ACC9077EF2AE42E6708 /* MenuButtonView.swift in Sources */,
+				696E864619F75912AB8E36EB /* SidebarAnimationDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

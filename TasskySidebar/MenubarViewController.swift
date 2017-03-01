@@ -22,7 +22,6 @@ class MenubarViewController: UIViewController {
     }()
     
     override func viewDidLoad() {
-        self.view.backgroundColor = UIColor.green
         self.navigationController?.navigationBar.barTintColor = .black
         
         self.setupTable()
@@ -64,6 +63,7 @@ extension MenubarViewController: UITableViewDelegate, UITableViewDataSource {
             cell = MenuItemTableViewCell(style: .default, reuseIdentifier: "cellId")
             cell?.textLabel?.textAlignment = .center
             cell?.textLabel?.textColor = .white
+            cell?.selectionStyle = .none
         }
         
         let menuItem = self.menuItems[indexPath.row] 
