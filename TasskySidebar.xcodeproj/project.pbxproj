@@ -14,6 +14,7 @@
 		837DF9871E64788400BC021B /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837DF9861E64788400BC021B /* MasterViewController.swift */; };
 		837DF98C1E64788400BC021B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 837DF98B1E64788400BC021B /* Assets.xcassets */; };
 		837DF98F1E64788400BC021B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 837DF98D1E64788400BC021B /* LaunchScreen.storyboard */; };
+		837DF9991E65DDEF00BC021B /* MenuItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837DF9981E65DDEF00BC021B /* MenuItemTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		837DF98B1E64788400BC021B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		837DF98E1E64788400BC021B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		837DF9901E64788400BC021B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		837DF9981E65DDEF00BC021B /* MenuItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuItemTableViewCell.swift; sourceTree = "<group>"; };
 		F4D270E8A1C53F4725CBAC3A /* Pods-TasskySidebar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TasskySidebar.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TasskySidebar/Pods-TasskySidebar.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -87,6 +89,7 @@
 				837DF9901E64788400BC021B /* Info.plist */,
 				696E8630919E3E5E6F6226AD /* MenubarViewController.swift */,
 				696E829FA994783B48556B5A /* DetailViewController.swift */,
+				837DF9981E65DDEF00BC021B /* MenuItemTableViewCell.swift */,
 			);
 			path = TasskySidebar;
 			sourceTree = "<group>";
@@ -218,6 +221,7 @@
 				837DF9851E64788400BC021B /* AppDelegate.swift in Sources */,
 				696E85E114BA9F5B90872E4B /* MenubarViewController.swift in Sources */,
 				696E872201834E8926E8C340 /* DetailViewController.swift in Sources */,
+				837DF9991E65DDEF00BC021B /* MenuItemTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -373,6 +377,7 @@
 				837DF9951E64788400BC021B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

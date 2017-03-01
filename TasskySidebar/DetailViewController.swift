@@ -8,8 +8,8 @@ import UIKit
 class DetailViewController: UIKit.UIViewController {
 
     override func viewDidLoad() {
-        self.title = "detail"
         self.view.backgroundColor = UIColor.blue
+        self.navigationController?.navigationBar.barTintColor = .black
     }
 
     override func didReceiveMemoryWarning() {

@@ -1,6 +1,7 @@
 did = "9C6CB3C6-D930-4012-9F8E-AB12EB7091F1"
 XCODE_SCHEME="TasskySidebar"
 XCODE_PROJECT="TasskySidebar.xcodeproj"
+XCODE_WORKSPACE="TasskySidebar.xcworkspace"
 SDK="iphonesimulator10.2"
 BUNDLE_APP="build/Build/Products/Debug-iphonesimulator/TasskySidebar.app"
 
@@ -10,7 +11,7 @@ boot:
 build:
 	xcrun xcodebuild \
 		-scheme $(XCODE_SCHEME) \
-		-project $(XCODE_PROJECT) \
+		-workspace $(XCODE_WORKSPACE) \
 		-configuration Debug \
 		-destination 'platform=iOS Simulator,name=iPhone 5s,OS=10.2' \
 		-derivedDataPath \
